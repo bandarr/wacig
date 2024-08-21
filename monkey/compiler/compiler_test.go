@@ -35,7 +35,7 @@ func testInstructions(
 
 func testConstants(
 
-	t *testing.T,
+	t *testing.T, //unused?
 
 	expected []interface{},
 

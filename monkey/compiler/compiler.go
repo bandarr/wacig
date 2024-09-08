@@ -288,8 +288,13 @@ func (c *Compiler) replaceInstruction(pos int, newInstruction []byte) {
 
 func (c *Compiler) changeOperand(opPos int, operand int) {
 	op := code.Opcode(c.instructions[opPos])
-
 	newInstruction := code.Make(op, operand)
-
 	c.replaceInstruction(opPos, newInstruction)
+}
+
+func NewWithState(s *SymbolTable, constants []object.Object) *Compiler {
+	compiler := New()
+	compiler.symbolTable = s
+	compiler.constants = constants
+	return compiler
 }

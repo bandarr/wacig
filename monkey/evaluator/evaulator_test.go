@@ -10,10 +10,10 @@ import (
 func TestEvalIntegerExpression(t *testing.T) {
 
 	tests := []struct {
-		input string
+		input    string
 		expected int64
 	}{
-		{"5",5},
+		{"5", 5},
 		{"10", 10},
 		{"-5", -5},
 		{"-10", -10},
@@ -46,7 +46,7 @@ func testEval(input string) object.Object {
 
 func testIntegerObject(t *testing.T, obj object.Object, expected int64) bool {
 	result, ok := obj.(*object.Integer)
-	
+
 	if !ok {
 		t.Errorf("object is not Integer. got=%T (%+v)", obj, obj)
 		return false
@@ -62,9 +62,9 @@ func testIntegerObject(t *testing.T, obj object.Object, expected int64) bool {
 
 func TestEvalBooleanExpression(t *testing.T) {
 	tests := []struct {
-		input string
+		input    string
 		expected bool
-	} {
+	}{
 		{"true", true},
 		{"false", false},
 		{"!true", false},
@@ -110,9 +110,7 @@ func TestBangOperator(t *testing.T) {
 	tests := []struct {
 		input    string
 		expected bool
-	}{
-
-	}
+	}{}
 
 	for _, tt := range tests {
 		evaluated := testEval(tt.input)
@@ -120,10 +118,9 @@ func TestBangOperator(t *testing.T) {
 	}
 }
 
-
-func TestIfElseExpressions(t *testing.T){
+func TestIfElseExpressions(t *testing.T) {
 	tests := []struct {
-		input string
+		input    string
 		expected interface{}
 	}{
 		{"if (true) { 10 }", 10},
@@ -157,7 +154,7 @@ func testNullObject(t *testing.T, obj object.Object) bool {
 
 func TestReturnStatements(t *testing.T) {
 	tests := []struct {
-		input string
+		input    string
 		expected int64
 	}{
 		{"return 10;", 10},
@@ -184,9 +181,9 @@ func TestReturnStatements(t *testing.T) {
 
 func TestErrorHandling(t *testing.T) {
 	tests := []struct {
-		input string
+		input           string
 		expectedMessage string
-	} {
+	}{
 		{
 			"5 + true;",
 			"type mismatch: INTEGER + BOOLEAN",
@@ -233,7 +230,7 @@ func TestErrorHandling(t *testing.T) {
 			"unknown operator: STRING - STRING",
 		},
 		{
-			`{"name": "Monkey"}[fn(x) { x }];`, 
+			`{"name": "Monkey"}[fn(x) { x }];`,
 			"unusable as hash key: FUNCTION",
 		},
 	}
@@ -254,11 +251,11 @@ func TestErrorHandling(t *testing.T) {
 	}
 }
 
-func TestLetStatements(t *testing.T){
+func TestLetStatements(t *testing.T) {
 	tests := []struct {
-		input string
+		input    string
 		expected int64
-	} {
+	}{
 		{"let a = 5; a;", 5},
 		{"let a = 5 * 5; a;", 25},
 		{"let a = 5; let b = a; b;", 5},
@@ -281,7 +278,7 @@ func TestFunctionObject(t *testing.T) {
 		t.Fatalf("object is not Function. got=%T (%+v)", evaluated, evaluated)
 	}
 
-	if len (fn.Parameters) != 1 {
+	if len(fn.Parameters) != 1 {
 		t.Fatalf("function has wrong paramters. Parameters=%+v", fn.Parameters)
 	}
 
@@ -441,8 +438,8 @@ func TestArrayLiterals(t *testing.T) {
 func TestArrayIndexExpressions(t *testing.T) {
 
 	tests := []struct {
-		input string
-		expected interface {}
+		input    string
+		expected interface{}
 	}{
 		{"[1, 2, 3][0]", 1},
 		{"[1, 2, 3][1]", 2},
@@ -468,7 +465,6 @@ func TestArrayIndexExpressions(t *testing.T) {
 	}
 }
 
-
 func TestHashLiterals(t *testing.T) {
 	input := `let two = "two";
 
@@ -489,7 +485,7 @@ func TestHashLiterals(t *testing.T) {
 		t.Fatalf("Eval didn't return Hash. got=%T (%+v)", evaluated, evaluated)
 	}
 
-	expected := map[object.HashKey]int64 {
+	expected := map[object.HashKey]int64{
 		(&object.String{Value: "one"}).HashKey():   1,
 		(&object.String{Value: "two"}).HashKey():   2,
 		(&object.String{Value: "three"}).HashKey(): 3,
@@ -519,7 +515,7 @@ func TestHashIndexExpressions(t *testing.T) {
 		expected interface{}
 	}{
 		{
-		`{"foo": 5}["foo"]`, 5,
+			`{"foo": 5}["foo"]`, 5,
 		},
 		{
 			`{"foo": 5}["bar"]`, nil,

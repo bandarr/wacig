@@ -5,7 +5,7 @@ package token
 type TokenType string
 
 type Token struct {
-	Type TokenType
+	Type    TokenType
 	Literal string
 }
 
@@ -47,13 +47,13 @@ const (
 	ELSE     = "ELSE"
 	RETURN   = "RETURN"
 
-	STRING   = "STRING"
+	STRING = "STRING"
 
 	//Array brackets
 	LBRACKET = "["
 	RBRACKET = "]"
 
-	COLON    = ":"
+	COLON = ":"
 )
 
 var keywords = map[string]TokenType{

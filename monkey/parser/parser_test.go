@@ -830,7 +830,7 @@ func TestStringLiteralExpression(t *testing.T) {
 	l := lexer.New(input)
 	p := New(l)
 	program := p.ParseProgram()
-	checkParserErrors(t,p)
+	checkParserErrors(t, p)
 
 	stmt := program.Statements[0].(*ast.ExpressionStatement)
 
@@ -912,14 +912,14 @@ func TestParsinghashLiteralsStringKeys(t *testing.T) {
 	}
 
 	expected := map[string]int64{
-		"one": 1,
-		"two": 2,
-		"three" : 3,
+		"one":   1,
+		"two":   2,
+		"three": 3,
 	}
 
 	for key, value := range hash.Pairs {
 		literal, ok := key.(*ast.StringLiteral)
-		
+
 		if !ok {
 			t.Errorf("key is not ast.StringLiteral. got=%T", key)
 		}
@@ -1068,4 +1068,3 @@ func TestParsingHashLiteralsWithExpressions(t *testing.T) {
 		testFunc(value)
 	}
 }
-

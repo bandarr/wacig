@@ -114,7 +114,7 @@ func TestNextToken(t *testing.T) {
 		{token.INT, "1"},
 		{token.COMMA, ","},
 		{token.INT, "2"},
-		{token.RBRACKET,"]"},
+		{token.RBRACKET, "]"},
 		{token.SEMICOLON, ";"},
 		{token.LBRACE, "{"},
 		{token.STRING, "foo"},

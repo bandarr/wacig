@@ -688,7 +688,7 @@ func TestFunctions(t *testing.T) {
 
 	tests := []compilerTestCase{
 		{
-			input: `fn() { return 5 + 10; }`, //hung on "return" and lack of semicolon
+			input: `fn() { return 5 + 10 }`, //hung on "return" and lack of semicolon - fixed problem in parseReturnStatement
 
 			expectedConstants: []interface{}{
 				5,
@@ -707,7 +707,7 @@ func TestFunctions(t *testing.T) {
 			},
 		},
 		{
-			input: `fn() { 5 + 10; }`,
+			input: `fn() { 5 + 10 }`,
 
 			expectedConstants: []interface{}{
 				5,

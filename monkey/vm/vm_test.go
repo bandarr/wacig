@@ -362,7 +362,6 @@ func TestCallingFunctionsWithoutArguments(t *testing.T) {
 			let c = fn() { b() + 1; };
 			c();
 			`,
-
 			expected: 3,
 		},
 	}

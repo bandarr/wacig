@@ -230,6 +230,7 @@ type FunctionLiteral struct {
 	Token      token.Token // 'fn'
 	Parameters []*Identifier
 	Body       *BlockStatement
+	Name       string
 }
 
 func (f1 *FunctionLiteral) expressionNode()      {}
@@ -243,6 +244,11 @@ func (f1 *FunctionLiteral) String() string {
 	}
 
 	out.WriteString(f1.TokenLiteral())
+	if f1.Name != "" {
+		out.WriteString(" ")
+		out.WriteString(f1.Name)
+	}
+
 	out.WriteString("(")
 	out.WriteString(strings.Join(params, ", "))
 	out.WriteString(") ")
